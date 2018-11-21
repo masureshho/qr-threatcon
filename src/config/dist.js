@@ -1,5 +1,5 @@
 const config = {
-  api_host: process.env.API_HOST || 'https://booking-backend-prod.herokuapp.com/api',
+  api_host: 'http://206.189.147.216'
 };
 
 export default config;
