@@ -22,7 +22,7 @@ class DashboardPage extends Component {
   componentDidMount() {
     const Instascan = window.Instascan;
     if (Instascan !== undefined) {
-      const scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+      const scanner = new Instascan.Scanner({ video: document.getElementById('preview'), mirror: false });
       scanner.addListener('scan',  this.handleScanSuccess);
       Instascan.Camera.getCameras().then((cameras) => {
         if (cameras.length > 0) {
