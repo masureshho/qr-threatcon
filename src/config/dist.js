@@ -1,5 +1,5 @@
 const config = {
-  api_host: 'http://206.189.147.216'
+  api_host: 'https://qr.threatnix.io'
 };
 
 export default config;
