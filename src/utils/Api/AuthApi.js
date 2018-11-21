@@ -1,6 +1,5 @@
-import xhttp from 'xhttp';
+import xhttp from '../xhttp';
 import config from 'config';
-
 export function fetchUser(id) {
   return xhttp({
     method: 'GET',

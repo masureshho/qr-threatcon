@@ -1,0 +1,61 @@
+{
+  "_args": [
+    [
+      "xhttp@0.0.8",
+      "/Users/suresh/project/chasinglights/tourwright-app"
+    ]
+  ],
+  "_from": "xhttp@0.0.8",
+  "_id": "xhttp@0.0.8",
+  "_inBundle": false,
+  "_integrity": "sha1-U4zV5mDu+n0Lto/KRxpZnsBpENI=",
+  "_location": "/xhttp",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "xhttp@0.0.8",
+    "name": "xhttp",
+    "escapedName": "xhttp",
+    "rawSpec": "0.0.8",
+    "saveSpec": null,
+    "fetchSpec": "0.0.8"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/xhttp/-/xhttp-0.0.8.tgz",
+  "_spec": "0.0.8",
+  "_where": "/Users/suresh/project/chasinglights/tourwright-app",
+  "author": {
+    "name": "Mitranim"
+  },
+  "bugs": {
+    "url": "https://github.com/Mitranim/xhttp/issues"
+  },
+  "dependencies": {
+    "es6-promise": "latest"
+  },
+  "description": "Lightweight ajax with pluggable ES6 promises and no mandatory dependencies.",
+  "devDependencies": {
+    "browserify": "latest",
+    "uglify-js": "latest"
+  },
+  "homepage": "https://github.com/Mitranim/xhttp#readme",
+  "keywords": [
+    "ajax",
+    "promises",
+    "browser"
+  ],
+  "main": "./lib/index.js",
+  "name": "xhttp",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Mitranim/xhttp.git"
+  },
+  "scripts": {
+    "build": "./scripts/build.sh",
+    "prepublish": "npm run build"
+  },
+  "version": "0.0.8"
+}
