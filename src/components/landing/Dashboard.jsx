@@ -79,12 +79,10 @@ class DashboardPage extends Component {
 
   render() {
     const { localHistory } = this.state;
-    console.log(localHistory);
     const message = _.map(localHistory, (h) =>
     (<ul>
       <li>
-        Name: {h.name},  Message: {h.msg}, Ticket Type: {h.tickettype}
-        date: {moment().format('YYYY-mm-dd HH:mm:ss')}
+        Name: <b> {h.name} </b>,  Message: <b> {h.msg} </b>, Ticket Type: <b>{h.tickettype}</b>, date: <b>{moment().format('YYYY-mm-dd HH:mm:ss')}</b>
       </li>
     </ul>));
     return (
