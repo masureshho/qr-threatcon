@@ -79,6 +79,7 @@ class DashboardPage extends Component {
 
   render() {
     const { localHistory } = this.state;
+    console.log(localHistory);
     const message = _.map(localHistory, (h) =>
     (<ul>
       <li>
