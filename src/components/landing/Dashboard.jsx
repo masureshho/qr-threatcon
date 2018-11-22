@@ -39,7 +39,7 @@ class DashboardPage extends Component {
     const { actions } = this.props;
     actions.checkin(user)
     .then(() => {
-      toastr.info(`${user.name} has successfully checked in`);
+      toastr.info(`${user.name}, ticket type: ${user.tickettype} has successfully checked in`);
     })
     .catch((e) => toastr.error(e));
   }
@@ -55,7 +55,7 @@ class DashboardPage extends Component {
       .then((user) => {
         if (!_.isEmpty(user)) {
           if (user.checked === '1') {
-            toastr.error(`${user.name} has already checked in`);
+            toastr.error(`${user.name}, ticket type: ${user.tickettype} has already checked in`);
           } else if (user.valid === '1') {
             this.handleCheckin(user);
           } else {
