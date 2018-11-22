@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import { toastr } from 'react-redux-toastr';
 import { fetchUser, checkin } from '../../reducers/authReducer';
 import _ from 'lodash';
+import moment from 'moment';
 
 class DashboardPage extends Component {
   static propTypes = {
@@ -18,6 +19,9 @@ class DashboardPage extends Component {
     super(props);
     this.handleScanSuccess = this.handleScanSuccess.bind(this);
     this.handleCheckin = this.handleCheckin.bind(this);
+    this.state = {
+      localHistory: []
+    };
   }
   componentDidMount() {
     const Instascan = window.Instascan;
@@ -37,15 +41,18 @@ class DashboardPage extends Component {
   }
   handleCheckin(user) {
     const { actions } = this.props;
+    const { localHistory } = this.state;
     actions.checkin(user)
     .then(() => {
       toastr.info(`${user.name}, ticket type: ${user.tickettype} has successfully checked in`);
+      localHistory.push({ ...user, msg: 'checked in successfull' });
     })
     .catch((e) => toastr.error(e));
   }
 
   handleScanSuccess(data) {
     const { actions } = this.props;
+    const { localHistory } = this.state;
     const regex = /No: \w+/;
     const parts = regex.exec(data);
     if (parts && parts.length) {
@@ -56,11 +63,14 @@ class DashboardPage extends Component {
         if (!_.isEmpty(user)) {
           if (user.checked === '1') {
             toastr.error(`${user.name}, ticket type: ${user.tickettype} has already checked in`);
+            localHistory.push({ ...data, msg: 'Already checked in' });
           } else if (user.valid === '1') {
             this.handleCheckin(user);
           } else {
+            localHistory.push({ ...data, msg: 'User is not valid' });
             toastr.error('User is not valid');
           }
+          this.setState({ localHistory });
         }
       })
       .catch((e) => toastr.error(e));
@@ -68,11 +78,21 @@ class DashboardPage extends Component {
   }
 
   render() {
+    const { localHistory } = this.state;
+    const message = _.map(localHistory, (h) =>
+    (<ul>
+      <li>
+        Name: {h.name},  Message: {h.msg}, Ticket Type: {h.tickettype}
+        date: {moment().format('YYYY-mm-dd HH:mm:ss')}
+      </li>
+    </ul>));
     return (
       <div>
         <div className="app-body-container" id="landing-layout">
           <video id="preview"></video>
         </div>
+        <h2>History</h2>
+        {message}
       </div>
     );
   }
