@@ -63,11 +63,11 @@ class DashboardPage extends Component {
         if (!_.isEmpty(user)) {
           if (user.checked === '1') {
             toastr.error(`${user.name}, ticket type: ${user.tickettype} has already checked in`);
-            localHistory.push({ ...data, msg: 'Already checked in' });
+            localHistory.push({ ...user, msg: 'Already checked in' });
           } else if (user.valid === '1') {
             this.handleCheckin(user);
           } else {
-            localHistory.push({ ...data, msg: 'User is not valid' });
+            localHistory.push({ ...user, msg: 'User is not valid' });
             toastr.error('User is not valid');
           }
           this.setState({ localHistory });
