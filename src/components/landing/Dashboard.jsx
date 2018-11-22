@@ -61,7 +61,10 @@ class DashboardPage extends Component {
       actions.fetchUser(id)
       .then((user) => {
         if (!_.isEmpty(user)) {
-          if (user.checked === '1') {
+          if (user.tickettype === 'bb_workshop' || user.tickettype === 'sc_workshop') {
+            localHistory.push({ ...user, msg: `Invalid ticket type ${user.tickettype}` });
+            toastr.warning(`${user.name}, ticket type: ${user.tickettype} is not valid`, 'Invalid Ticket');
+          } else if (user.checked === '1') {
             toastr.error(`${user.name}, ticket type: ${user.tickettype} has already checked in`);
             localHistory.push({ ...user, msg: 'Already checked in' });
           } else if (user.valid === '1') {
